@@ -7,13 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, []),
+    DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
 )
-
 SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,9 +62,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 
 DATABASES = {
-    'default': {
-        'default': env.db(),
-    }
+    'default': env.db(),
 }
 
 # Password validation
